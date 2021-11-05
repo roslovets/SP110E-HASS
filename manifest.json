@@ -3,9 +3,9 @@
   "name": "SP110E RGB LED BLE Controller",
   "documentation": "https://github.com/roslovets/SP110E-HASS",
   "dependencies": [],
-  "codeowners": [],
+  "codeowners": ["Pavel Roslovets <p.v.roslovets@gmail.com>"],
   "requirements": [
-    "SP110E==0.4.1"
+    "SP110E==0.6.0"
   ],
   "iot_class": "local_polling",
   "version": "0.1.0"
