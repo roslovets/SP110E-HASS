@@ -39,10 +39,10 @@ async def async_setup_platform(
     # Add device
     entity = SP110E(device)
     add_entities([entity])
-    # try:
-    #     await sp110e.async_update()
-    # except:
-    #     pass
+    try:
+        await entity.async_update()
+    except:
+        pass
 
 
 class SP110E(LightEntity):
@@ -58,7 +58,7 @@ class SP110E(LightEntity):
 
     @property
     def should_poll(self) -> bool:
-        return False
+        return True
 
     @property
     def unique_id(self) -> str:
@@ -131,6 +131,7 @@ class SP110E(LightEntity):
         await self._device.switch_off()
         self.__get_parameters()
 
+    @Throttle(timedelta(seconds=1))
     async def async_update(self) -> None:
         """Fetch new state data for this light."""
         self._device.update()
