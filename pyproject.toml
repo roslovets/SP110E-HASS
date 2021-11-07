@@ -1,8 +1,18 @@
 [tool.poetry]
 name = "sp110e-hass"
 version = "0.1.0"
-description = ""
+description = "Control SP110E RGB LED BLE Controller from Home Assistant"
 authors = ["Pavel Roslovets <p.v.roslovets@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/roslovets/SP110E-HASS"
+repository = "https://github.com/roslovets/SP110E-HASS"
+keywords = ["SP110E", "RGB", "LED", "HASS", "Home Assistant"]
+classifiers =[
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+    ]
 
 [tool.poetry.dependencies]
 python = ">=3.9"
