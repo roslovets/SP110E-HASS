@@ -1,19 +1,18 @@
 """Platform for light integration."""
 from __future__ import annotations
+from typing import Any
 import logging
-import asyncio
 from datetime import timedelta
 import voluptuous as vol
-import homeassistant.helpers.config_validation as cv
-from homeassistant.components.light import (ATTR_BRIGHTNESS, ATTR_RGBW_COLOR, ATTR_EFFECT, PLATFORM_SCHEMA, LightEntity,
-                                            COLOR_MODE_ONOFF, COLOR_MODE_BRIGHTNESS, COLOR_MODE_RGB, COLOR_MODE_RGBW,
-                                            SUPPORT_EFFECT)
 from homeassistant.core import HomeAssistant
+from homeassistant.components.light import (LightEntity, ATTR_BRIGHTNESS, ATTR_RGBW_COLOR, ATTR_EFFECT, PLATFORM_SCHEMA,
+                                            COLOR_MODE_RGBW, SUPPORT_EFFECT)
+import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 from homeassistant.helpers.device_registry import format_mac
 from homeassistant.util import Throttle
-from SP110E.Controller import Controller
+from sp110e.сontroller import Controller
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -46,15 +45,15 @@ async def async_setup_platform(
     # Initialize device driver
     device = Controller(mac)
     # Add device
-    entity = SP110E(device, name=name, ic_model=ic_model, sequence=sequence, pixels=pixels, speed=speed)
-    add_entities([entity])
+    sp110e_entity = SP110EEntity(device, name=name, ic_model=ic_model, sequence=sequence, pixels=pixels, speed=speed)
+    add_entities([sp110e_entity])
     try:
-        await entity.async_update()
+        await sp110e_entity.async_update()
     except:
         pass
 
 
-class SP110E(LightEntity):
+class SP110EEntity(LightEntity):
     """Representation of an SP110E device."""
 
     def __init__(self, device, name: str, ic_model: str, sequence: str, pixels: int, speed: int) -> None:
@@ -122,9 +121,8 @@ class SP110E(LightEntity):
     @Throttle(timedelta(seconds=0.1))
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Instruct the light to turn on."""
-        await self.__configure()
-        if not self._device.is_on():
-            await self._device.switch_on()
+        await self._configure()
+        await self._device.switch_on()
         brightness = kwargs.get(ATTR_BRIGHTNESS, None)
         rgbw_color = kwargs.get(ATTR_RGBW_COLOR, None)
         effect = kwargs.get(ATTR_EFFECT, None)
@@ -137,28 +135,28 @@ class SP110E(LightEntity):
             await self._device.set_white(white)
         if effect is not None:
             await self._device.set_mode(int(effect))
-        self.__get_parameters()
+        self._get_parameters()
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Instruct the light to turn off."""
         await self._device.switch_off()
-        self.__get_parameters()
+        self._get_parameters()
 
     @Throttle(timedelta(seconds=1))
     async def async_update(self) -> None:
         """Fetch new state data for this light."""
         self._device.update()
-        self.__get_parameters()
+        self._get_parameters()
 
-    def __get_parameters(self):
+    def _get_parameters(self):
         """Get parameters from device."""
-        self._state = self._device.is_on()
+        self._state = self._device.get_state()
         self._brightness = self._device.get_brightness()
         color = self._device.get_color()
         white = self._device.get_white()
         self._rgbw = (color[0], color[1], color[2], white)
 
-    async def __configure(self):
+    async def _configure(self):
         """Configure device."""
         if not self._configured:
             if self._ic_model:
