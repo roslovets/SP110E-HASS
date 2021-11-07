@@ -5,17 +5,26 @@ Control SP110E RGB LED BLE Controller from Home Assistant
 ### Supported features:
 
 - Turn on/off
+- Set brightness
+- Set color
+- Set white color brightness
+- Select mode
+- Configure device
 
 ### Installation
 
 Copy files to `<config_dir>/custom_components/sp110e/`.
 
-Add the following entry in your `configuration.yaml`:
+Add the following entry in your `configuration.yaml` (example):
 
 ```yaml
 light:
   - platform: sp110e
-    mac: AF:00:10:01:C8:AF # Replace with your MAC address
+    mac: AF:00:10:01:C8:AF # Replace with your MAC address (required)
+    name: SP110E # Device name for UI (optional, default: SP110E)
+    ic_model: UCS1903 # Circuit model (optional)
+    sequence: GRB # Color sequence (optional)
+    pixels: 60 # Number of LED pixels (optional)
 ```
 
 ## FAQ
