@@ -5,8 +5,7 @@ on:
         branches:
             - main
         paths:
-            - light.py
-            - manifest.json
+            - custom_components/**
             - pyproject.toml
             - .github/**
 
