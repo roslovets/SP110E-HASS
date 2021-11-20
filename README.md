@@ -33,6 +33,12 @@ Q: I'm getting error `[Errno 2] No such file or directory` when running Home Ass
 
 A: Add this volume to your container: `/var/run/dbus/:/var/run/dbus/:z`
 
+## Development
+
+### Create new release
+
+Push changes to 'main' branch following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+
 ## Useful links
 
 - [SP110E Python Library](https://github.com/roslovets/SP110E)
