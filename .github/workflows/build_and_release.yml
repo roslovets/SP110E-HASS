@@ -1,0 +1,32 @@
+name: 🚀 Build and release
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - light.py
+            - manifest.json
+            - pyproject.toml
+            - .github/**
+
+jobs:
+    build_and_publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: ⚙️ Setup Python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: 3.9
+
+            - name: 🔃 Checkout code
+              uses: actions/checkout@v2
+
+            - name: 📦 Install poetry
+              run: pip install poetry
+
+            - name: 📢 Semantic Release
+              uses: bjoluc/semantic-release-config-poetry@v1
+              with:
+                  pypi_token: ${{ secrets.PYPI_TOKEN }}
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
