@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sp110e-hass"
-version = "0.2.2"
+version = "0.3.0"
 description = "Control SP110E RGB LED BLE Controller from Home Assistant"
 authors = ["Pavel Roslovets <p.v.roslovets@gmail.com>"]
 license = "MIT"

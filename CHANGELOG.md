@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2021-11-20)
+### Feature
+* Add HACS ([`4b2c27c`](https://github.com/roslovets/SP110E-HASS/commit/4b2c27c744b460ec76e31e63df174115ee9269e7))
+
 ## v0.2.2 (2021-11-20)
 ### Fix
 * **ci:** Update version in pyproject.toml ([`41275a7`](https://github.com/roslovets/SP110E-HASS/commit/41275a756543fbe9e4736ad33f99957dd876d88a))
