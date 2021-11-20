@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 from homeassistant.helpers.device_registry import format_mac
 from homeassistant.util import Throttle
-from sp110e.сontroller import Controller
+from sp110e.controller import Controller
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -23,7 +23,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional('ic_model', default=''): cv.string,
     vol.Optional('sequence', default=''): cv.string,
     vol.Optional('pixels', default=0): cv.positive_int,
-    vol.Optional('speed', default=256): cv.positive_int
+    vol.Optional('speed', default=256): cv.positive_int,
+    vol.Optional('strict', default=False): cv.boolean
 })
 SCAN_INTERVAL = timedelta(seconds=30)
 
@@ -42,10 +43,19 @@ async def async_setup_platform(
     sequence = config['sequence']
     pixels = config['pixels']
     speed = config['speed']
+    strict = config['strict']
     # Initialize device driver
     device = Controller(mac)
     # Add device
-    sp110e_entity = SP110EEntity(device, name=name, ic_model=ic_model, sequence=sequence, pixels=pixels, speed=speed)
+    sp110e_entity = SP110EEntity(
+        device,
+        name=name,
+        ic_model=ic_model,
+        sequence=sequence,
+        pixels=pixels,
+        speed=speed,
+        strict=strict
+    )
     add_entities([sp110e_entity])
     try:
         await sp110e_entity.async_update()
@@ -56,7 +66,7 @@ async def async_setup_platform(
 class SP110EEntity(LightEntity):
     """Representation of an SP110E device."""
 
-    def __init__(self, device, name: str, ic_model: str, sequence: str, pixels: int, speed: int) -> None:
+    def __init__(self, device, name: str, ic_model: str, sequence: str, pixels: int, speed: int, strict: bool) -> None:
         """Initialize object."""
         self._device = device
         self._name = name
@@ -64,6 +74,7 @@ class SP110EEntity(LightEntity):
         self._sequence = sequence
         self._pixels = pixels
         self._speed = speed
+        self._strict = strict
         self._state = False
         self._brightness = 0
         self._rgbw = (0, 0, 0, 0)
@@ -121,32 +132,41 @@ class SP110EEntity(LightEntity):
     @Throttle(timedelta(seconds=0.1))
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Instruct the light to turn on."""
-        await self._configure()
-        await self._device.switch_on()
         brightness = kwargs.get(ATTR_BRIGHTNESS, None)
         rgbw_color = kwargs.get(ATTR_RGBW_COLOR, None)
         effect = kwargs.get(ATTR_EFFECT, None)
-        if brightness is not None:
-            await self._device.set_brightness(brightness)
-        if rgbw_color is not None:
-            color = [rgbw_color[0], rgbw_color[1], rgbw_color[2]]
-            white = rgbw_color[3]
-            await self._device.set_color(color)
-            await self._device.set_white(white)
-        if effect is not None:
-            await self._device.set_mode(int(effect))
-        self._get_parameters()
+        try:
+            await self._configure()
+            await self._device.switch_on()
+            if brightness is not None:
+                await self._device.set_brightness(brightness)
+            if rgbw_color is not None:
+                color = [rgbw_color[0], rgbw_color[1], rgbw_color[2]]
+                white = rgbw_color[3]
+                await self._device.set_color(color)
+                await self._device.set_white(white)
+            if effect is not None:
+                await self._device.set_mode(int(effect))
+            self._get_parameters()
+        except Exception as exception:
+            self._handle_exception(exception)
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Instruct the light to turn off."""
-        await self._device.switch_off()
-        self._get_parameters()
+        try:
+            await self._device.switch_off()
+            self._get_parameters()
+        except Exception as exception:
+            self._handle_exception(exception)
 
     @Throttle(timedelta(seconds=1))
     async def async_update(self) -> None:
         """Fetch new state data for this light."""
-        self._device.update()
-        self._get_parameters()
+        try:
+            self._device.update()
+            self._get_parameters()
+        except Exception as exception:
+            self._handle_exception(exception)
 
     def _get_parameters(self):
         """Get parameters from device."""
@@ -168,3 +188,10 @@ class SP110EEntity(LightEntity):
             if self._speed < 256:
                 await self._device.set_speed(self._speed)
             self._configured = True
+
+    def _handle_exception(self, exception):
+        """Handle device exception."""
+        if self._strict:
+            raise exception
+        else:
+            pass

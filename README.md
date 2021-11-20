@@ -15,7 +15,15 @@ Control SP110E RGB LED BLE Controller from Home Assistant
 
 Copy `custom_components/sp110e` folder to `<config_dir>/custom_components/`.
 
-Add the following entry in your `configuration.yaml` (example):
+Add the following entry in your `configuration.yaml` (quick example):
+
+```yaml
+light:
+  - platform: sp110e
+    mac: AF:00:10:01:C8:AF # Replace with your MAC address (required)
+```
+
+Full list of options (full example)
 
 ```yaml
 light:
@@ -25,6 +33,7 @@ light:
     ic_model: UCS1903 # Circuit model (optional)
     sequence: GRB # Color sequence (optional)
     pixels: 60 # Number of LED pixels (optional)
+    strict: false # If true, you will get an error trying to operate with offline device (optional, default: false)
 ```
 
 ## FAQ
