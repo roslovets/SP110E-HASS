@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.1 (2021-11-20)
+### Fix
+* Ci ([`6c04486`](https://github.com/roslovets/SP110E-HASS/commit/6c044862a951ce2704d25e1247de27b0f615f753))
+* Ci ([`5b61cfe`](https://github.com/roslovets/SP110E-HASS/commit/5b61cfe1e54bb92917d0f3a2eec6ead22745c39e))
+
 ## v0.2.0 (2021-11-20)
 ### Feature
 * Update SP110E library ([`e8dddb7`](https://github.com/roslovets/SP110E-HASS/commit/e8dddb76c2ece70f4b7c6223a29412fa44a857fc))
