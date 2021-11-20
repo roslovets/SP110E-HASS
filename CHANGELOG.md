@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2021-11-20)
+### Feature
+* 'strict' option ([`0b47578`](https://github.com/roslovets/SP110E-HASS/commit/0b47578d70de013b56ad16909e09a07fa8b1f6f6))
+
+### Fix
+* **ci:** Validate for HACS ([`f57ca34`](https://github.com/roslovets/SP110E-HASS/commit/f57ca348b4b2d4b5328c3d7bdfa80724e2dd0aaf))
+
 ## v0.3.0 (2021-11-20)
 ### Feature
 * Add HACS ([`4b2c27c`](https://github.com/roslovets/SP110E-HASS/commit/4b2c27c744b460ec76e31e63df174115ee9269e7))
