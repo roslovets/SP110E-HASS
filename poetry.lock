@@ -196,7 +196,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "homeassistant"
-version = "2021.11.1"
+version = "2021.11.5"
 description = "Open-source home automation platform running on Python 3."
 category = "dev"
 optional = false
@@ -319,7 +319,7 @@ tests = ["pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)"]
 
 [[package]]
 name = "pyobjc-core"
-version = "7.3"
+version = "8.0"
 description = "Python<->ObjC Interoperability Module"
 category = "dev"
 optional = false
@@ -327,37 +327,37 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "pyobjc-framework-cocoa"
-version = "7.3"
+version = "8.0"
 description = "Wrappers for the Cocoa frameworks on macOS"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-pyobjc-core = ">=7.3"
+pyobjc-core = ">=8.0"
 
 [[package]]
 name = "pyobjc-framework-corebluetooth"
-version = "7.3"
+version = "8.0"
 description = "Wrappers for the framework CoreBluetooth on macOS"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-pyobjc-core = ">=7.3"
-pyobjc-framework-Cocoa = ">=7.3"
+pyobjc-core = ">=8.0"
+pyobjc-framework-Cocoa = ">=8.0"
 
 [[package]]
 name = "pyobjc-framework-libdispatch"
-version = "7.3"
+version = "8.0"
 description = "Wrappers for libdispatch on macOS"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-pyobjc-core = ">=7.3"
+pyobjc-core = ">=8.0"
 
 [[package]]
 name = "python-slugify"
@@ -439,7 +439,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "sp110e"
-version = "0.9.0"
+version = "1.0.0"
 description = "Control SP110E BLE RGB LED device from computer"
 category = "dev"
 optional = false
@@ -467,11 +467,11 @@ python-versions = "*"
 
 [[package]]
 name = "typing-extensions"
-version = "3.10.0.2"
-description = "Backported and Experimental Type Hints for Python 3.5+"
+version = "4.0.0"
+description = "Backported and Experimental Type Hints for Python 3.6+"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6"
 
 [[package]]
 name = "urllib3"
@@ -519,7 +519,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9"
-content-hash = "b87f9c5d6bc9e473c070db4215fe3a4512176f18dd5456d37ee09680af916287"
+content-hash = "ad1693239f736e4a412d33d9ec9574f1ffbda92acd904605d0c3dfbb73468fed"
 
 [metadata.files]
 aiohttp = [
@@ -714,8 +714,8 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 homeassistant = [
-    {file = "homeassistant-2021.11.1-py3-none-any.whl", hash = "sha256:3590e71585b6cf203b8ef9dc9adedbbd7d076fd55699bc513db976bd264a5356"},
-    {file = "homeassistant-2021.11.1.tar.gz", hash = "sha256:550a3a9ee08c680842f3fc8d3691ebd37eb86e235375e8ab16edb30467b08819"},
+    {file = "homeassistant-2021.11.5-py3-none-any.whl", hash = "sha256:c65f55e31f2555b1063c6d177c819bf0812722a54beca18ac402c327dcba7123"},
+    {file = "homeassistant-2021.11.5.tar.gz", hash = "sha256:d277b402004a69d6fb14031879cd0583cab9285cc3c3537ec2f504ff9c61a0cf"},
 ]
 httpcore = [
     {file = "httpcore-0.13.7-py3-none-any.whl", hash = "sha256:369aa481b014cf046f7067fddd67d00560f2f00426e79569d99cb11245134af0"},
@@ -887,39 +887,34 @@ pyjwt = [
     {file = "PyJWT-2.1.0.tar.gz", hash = "sha256:fba44e7898bbca160a2b2b501f492824fc8382485d3a6f11ba5d0c1937ce6130"},
 ]
 pyobjc-core = [
-    {file = "pyobjc-core-7.3.tar.gz", hash = "sha256:5081aedf8bb40aac1a8ad95adac9e44e148a882686ded614adf46bb67fd67574"},
-    {file = "pyobjc_core-7.3-1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:a1f1e6b457127cbf2b5bd2b94520a7c89fb590b739911eadb2b0499a3a5b0e6f"},
-    {file = "pyobjc_core-7.3-1-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:ed708cc47bae8b711f81f252af09898a5f986c7a38cec5ad5623d571d328bff8"},
-    {file = "pyobjc_core-7.3-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:4e93ad769a20b908778fe950f62a843a6d8f0fa71996e5f3cc9fab5ae7d17771"},
-    {file = "pyobjc_core-7.3-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:9f63fd37bbf3785af4ddb2f86cad5ca81c62cfc7d1c0099637ca18343c3656c1"},
-    {file = "pyobjc_core-7.3-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:e9b1311f72f2e170742a7ee3a8149f52c35158dc024a21e88d6f1e52ba5d718b"},
-    {file = "pyobjc_core-7.3-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:8d5e12a0729dfd1d998a861998b422d0a3e41923d75ea229bacf31372c831d7b"},
-    {file = "pyobjc_core-7.3-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:efdee8c4884405e0c0186c57f87d7bfaa0abc1f50b18e865db3caea3a1f329b9"},
+    {file = "pyobjc-core-8.0.tar.gz", hash = "sha256:4cd0735cdb7a7b959def0fe1769df74e0ab6de5ea1ca40f1464d2ac78b85326f"},
+    {file = "pyobjc_core-8.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:d517f1dffddb30d1a9d4c5109a46ffc37eb461720558a54d57586459014b2d0b"},
+    {file = "pyobjc_core-8.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:7e710f7329a7dbca27639c7ce60a50b2003d5492d55f66fec2ab8c375f134812"},
+    {file = "pyobjc_core-8.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:0e1d2f3e1216e92428e0107a651b074d44f2856b98aac93fef5b27bfb4355232"},
+    {file = "pyobjc_core-8.0-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:d56c69d9267723326c9254e268838a5d67120c34e0667ef9c947c8336a755dec"},
+    {file = "pyobjc_core-8.0-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:e19d3fd51cc993e31f51e32f62463e81da79dbd22042e7a18cf6ee141db9d539"},
 ]
 pyobjc-framework-cocoa = [
-    {file = "pyobjc-framework-Cocoa-7.3.tar.gz", hash = "sha256:b18d05e7a795a3455ad191c3e43d6bfa673c2a4fd480bb1ccf57191051b80b7e"},
-    {file = "pyobjc_framework_Cocoa-7.3-1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:1e31376806e5de883a1d7c7c87d9ff2a8b09fc05d267e0dfce6e42409fb70c67"},
-    {file = "pyobjc_framework_Cocoa-7.3-1-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:d999387927284346035cb63ebb51f86331abc41f9376f9a6970e7f18207db392"},
-    {file = "pyobjc_framework_Cocoa-7.3-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:9edffdfa6dd1f71f21b531c3e61fdd3e4d5d3bf6c5a528c98e88828cd60bac11"},
-    {file = "pyobjc_framework_Cocoa-7.3-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:35a6340437a4e0109a302150b7d1f6baf57004ccf74834f9e6062fcafe2fd8d7"},
-    {file = "pyobjc_framework_Cocoa-7.3-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:7c3886f2608ab3ed02482f8b2ebf9f782b324c559e84b52cfd92dba8a1109872"},
-    {file = "pyobjc_framework_Cocoa-7.3-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:2e8e7a1a82cca21d9bfac9115baf065305f3da577bf240085964dfb9c9fff337"},
-    {file = "pyobjc_framework_Cocoa-7.3-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:6c15f43077c9a2ba1853eb402ff7a9515df9e584315bc2fcb779d4c95ef46dc5"},
+    {file = "pyobjc-framework-Cocoa-8.0.tar.gz", hash = "sha256:233fe4cf6ddd5804d76b68fac3f0601b78cc0c307703eb5f2dcb9a1ef62a7904"},
+    {file = "pyobjc_framework_Cocoa-8.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:f6b4e8708d574b26a72366f11b0a3afb59e6cd8569f6aabf42450ac39d69c115"},
+    {file = "pyobjc_framework_Cocoa-8.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:49ceaae8bf993b42e6afa1a91aa6fda44628ac8944b5a631fdc844b9b8da4b27"},
+    {file = "pyobjc_framework_Cocoa-8.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:4fd7b0627681841c12a47e77fd06ec518b41f0037e12cd1d1e035de5d2b4a333"},
+    {file = "pyobjc_framework_Cocoa-8.0-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:fab76fd835228c37280fdf4db71b740c3c8a60a0a304373c9a162134fba58fd3"},
+    {file = "pyobjc_framework_Cocoa-8.0-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:0766f4adbfca41815529c639da1e4c9959bed86c961956c564f3163dc3e56c74"},
 ]
 pyobjc-framework-corebluetooth = [
-    {file = "pyobjc-framework-CoreBluetooth-7.3.tar.gz", hash = "sha256:86537978052481023cd378714c5e01a337794435aa1981db60c75517f7dc7fca"},
-    {file = "pyobjc_framework_CoreBluetooth-7.3-cp36-abi3-macosx_10_9_universal2.whl", hash = "sha256:f197fd9c13815c1f41997b7eaadee704a54e9f0bd8a0a2ba75bf549d0889caca"},
-    {file = "pyobjc_framework_CoreBluetooth-7.3-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:f9f4e9ce79d1933ca7c046348319ec332bf8e95383bc7af70f26accd9167b5c4"},
+    {file = "pyobjc-framework-CoreBluetooth-8.0.tar.gz", hash = "sha256:faec90e146f74616dfa761166b9ba53d5f1955bbc4f7af3f157fa8e5edd57f3c"},
+    {file = "pyobjc_framework_CoreBluetooth-8.0-cp36-abi3-macosx_10_9_universal2.whl", hash = "sha256:eee04c181eb0bd94d29252a944ffad36e6ef45b8e014bb595d5211d65ccc75dd"},
+    {file = "pyobjc_framework_CoreBluetooth-8.0-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:46af131a314890f6bab956e4fe779d7d524fbcb3e77fbc04ac6942da5210ace3"},
+    {file = "pyobjc_framework_CoreBluetooth-8.0-cp36-abi3-macosx_11_0_universal2.whl", hash = "sha256:49f5020e8bfa938ed929d94f45f57834d6a815536f90429a0001a704ce6baa00"},
 ]
 pyobjc-framework-libdispatch = [
-    {file = "pyobjc-framework-libdispatch-7.3.tar.gz", hash = "sha256:c3e63ce294e50a36c17bc9e65ccf3e448995931fc10fc0c15f899d27c438e25f"},
-    {file = "pyobjc_framework_libdispatch-7.3-1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:e945cda52619d53435fbbdccc63d195987bccfdc6abc59b12caf0c16852d6a45"},
-    {file = "pyobjc_framework_libdispatch-7.3-1-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:c03d0885d321c813ce0c3cfda17cb531cd71f005adbfd402275bc4f6ba8d6319"},
-    {file = "pyobjc_framework_libdispatch-7.3-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:2262ab83c6236d168c4e595ecdb1973c1f845dd0dc21840f4a8ce6f900d7e357"},
-    {file = "pyobjc_framework_libdispatch-7.3-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:57acf9136ad53794c2303dc0f055491270cf70b85f89cef79493c09b60f60f59"},
-    {file = "pyobjc_framework_libdispatch-7.3-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:be032ce5d05ac23e82c18a6d25459b45ceac3f3073949a439584a99fc26582a5"},
-    {file = "pyobjc_framework_libdispatch-7.3-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:69137492b4564d739f9b4eb56f8823a32fab47d13e809ca401b0c66240be929c"},
-    {file = "pyobjc_framework_libdispatch-7.3-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:7bc56539ac0761519d6f68149a012ed9b4250781156dbeeeeb8920146125222a"},
+    {file = "pyobjc-framework-libdispatch-8.0.tar.gz", hash = "sha256:2915912b7c7bba6a4466f1074fba9713c3619106693574b6365e1f651d71f91e"},
+    {file = "pyobjc_framework_libdispatch-8.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:b436e4cf92963e584ac04f50d66d22644b71481b3303c48767c093ad44b76e85"},
+    {file = "pyobjc_framework_libdispatch-8.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:79b341e61cc982b5906825ec7bbac7b386ec9915cc3f15485e2a93b153d151f9"},
+    {file = "pyobjc_framework_libdispatch-8.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:b71050cab68595d5475f547bae71da7459eba638dcf544c611ec29fd93941b72"},
+    {file = "pyobjc_framework_libdispatch-8.0-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:4c17ee891a9255531ebb80ad4aa3831bc267d2417800aed1dfc59f5715f5b431"},
+    {file = "pyobjc_framework_libdispatch-8.0-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:1d15e5a7b459b56f1d7dbc4ba9cfbf3e15404f71a21d2facc026f41c7f50fca9"},
 ]
 python-slugify = [
     {file = "python-slugify-4.0.1.tar.gz", hash = "sha256:69a517766e00c1268e5bbfc0d010a0a8508de0b18d30ad5a1ff357f8ae724270"},
@@ -980,8 +975,8 @@ sniffio = [
     {file = "sniffio-1.2.0.tar.gz", hash = "sha256:c4666eecec1d3f50960c6bdf61ab7bc350648da6c126e3cf6898d8cd4ddcd3de"},
 ]
 sp110e = [
-    {file = "sp110e-0.9.0-py3-none-any.whl", hash = "sha256:2e6c7ed4b1f3e1aceb71468fe1d0f587a9a3df5bddefa04e7cda5b1720b5f761"},
-    {file = "sp110e-0.9.0.tar.gz", hash = "sha256:434fa30ac99f294a6521fb6c87919ddfceca5ea9deb24cce98311196f77d749a"},
+    {file = "sp110e-1.0.0-py3-none-any.whl", hash = "sha256:13b6db4fe4c6f92544f3d287b7af959a20a50fe22e7b6ba0722f86c5d90570f0"},
+    {file = "sp110e-1.0.0.tar.gz", hash = "sha256:27439711ad73f83a27b63b95d520e5c268a8582dd8da3601e49461cef715f473"},
 ]
 syncer = [
     {file = "syncer-1.3.0.tar.gz", hash = "sha256:6eb756f345388e08763f9695e7b5071b7657f0a7e809e486e3f9ca3fb4cd4d2c"},
@@ -991,9 +986,8 @@ text-unidecode = [
     {file = "text_unidecode-1.3-py2.py3-none-any.whl", hash = "sha256:1311f10e8b895935241623731c2ba64f4c455287888b18189350b67134a822e8"},
 ]
 typing-extensions = [
-    {file = "typing_extensions-3.10.0.2-py2-none-any.whl", hash = "sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7"},
-    {file = "typing_extensions-3.10.0.2-py3-none-any.whl", hash = "sha256:f1d25edafde516b146ecd0613dabcc61409817af4766fbbcfb8d1ad4ec441a34"},
-    {file = "typing_extensions-3.10.0.2.tar.gz", hash = "sha256:49f75d16ff11f1cd258e1b988ccff82a3ca5570217d7ad8c5f48205dd99a677e"},
+    {file = "typing_extensions-4.0.0-py3-none-any.whl", hash = "sha256:829704698b22e13ec9eaf959122315eabb370b0884400e9818334d8b677023d9"},
+    {file = "typing_extensions-4.0.0.tar.gz", hash = "sha256:2cdf80e4e04866a9b3689a51869016d36db0814d84b8d8a568d22781d45d27ed"},
 ]
 urllib3 = [
     {file = "urllib3-1.22-py2.py3-none-any.whl", hash = "sha256:06330f386d6e4b195fbfc736b297f58c5a892e4440e54d294d7004e3a9bbea1b"},

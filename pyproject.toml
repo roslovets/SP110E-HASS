@@ -19,8 +19,16 @@ python = ">=3.9"
 
 [tool.poetry.dev-dependencies]
 homeassistant = "^2021.11.0"
-sp110e = "^0.9.0"
+sp110e = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+remove_dist = "false"
+branch = "main"
+version_toml = "pyproject.toml:tool.poetry.version"
+version_variable = "manifest.json:version"
+upload_to_release = "false"
+upload_to_pypi = "false"
