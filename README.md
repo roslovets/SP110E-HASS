@@ -13,7 +13,7 @@ Control SP110E RGB LED BLE Controller from Home Assistant
 
 ### Installation
 
-Copy files to `<config_dir>/custom_components/sp110e/`.
+Copy `custom_components/sp110e` folder to `<config_dir>/custom_components/`.
 
 Add the following entry in your `configuration.yaml` (example):
 
