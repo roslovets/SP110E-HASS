@@ -23,10 +23,10 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - name: ✅ HACS validation
-              uses: "hacs/action@main"
-              with:
-                category: "integration"
+#            - name: ✅ HACS validation
+#              uses: "hacs/action@main"
+#              with:
+#                category: "integration"
 
             - name: 📢 Semantic Release
               uses: relekang/python-semantic-release@master
