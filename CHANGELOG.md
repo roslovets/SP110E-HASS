@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.2 (2021-11-20)
+### Fix
+* **ci:** Update version in pyproject.toml ([`41275a7`](https://github.com/roslovets/SP110E-HASS/commit/41275a756543fbe9e4736ad33f99957dd876d88a))
+
 ## v0.2.1 (2021-11-20)
 ### Fix
 * Ci ([`6c04486`](https://github.com/roslovets/SP110E-HASS/commit/6c044862a951ce2704d25e1247de27b0f615f753))
