@@ -1,4 +1,4 @@
-name: 🚀 Build and release
+name: 🚀 Create release
 
 on:
     push:
@@ -11,7 +11,7 @@ on:
             - .github/**
 
 jobs:
-    build_and_publish:
+    create_release:
         runs-on: ubuntu-latest
         steps:
             - name: ⚙️ Setup Python
@@ -21,11 +21,13 @@ jobs:
 
             - name: 🔃 Checkout code
               uses: actions/checkout@v2
+              with:
+                fetch-depth: 0
 
-            - name: 📦 Install poetry
-              run: pip install poetry
+#            - name: 📦 Install poetry
+#              run: pip install poetry
 
             - name: 📢 Semantic Release
-              uses: bjoluc/semantic-release-config-poetry@v1
+              uses: relekang/python-semantic-release@master
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
