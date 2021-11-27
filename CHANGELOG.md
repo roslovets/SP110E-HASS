@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.0 (2021-11-27)
+### Feature
+* Force switch off ([`b47ce40`](https://github.com/roslovets/SP110E-HASS/commit/b47ce40bd6395bd769d7642f90eb06f526ddc8e8))
+* Add custom effects ([`2a818bf`](https://github.com/roslovets/SP110E-HASS/commit/2a818bfdf25035642e1ebca8668a053ebe99cf12))
+
+### Breaking
+* add custom effects ([`2a818bf`](https://github.com/roslovets/SP110E-HASS/commit/2a818bfdf25035642e1ebca8668a053ebe99cf12))
+
 ## v0.4.0 (2021-11-20)
 ### Feature
 * 'strict' option ([`0b47578`](https://github.com/roslovets/SP110E-HASS/commit/0b47578d70de013b56ad16909e09a07fa8b1f6f6))
