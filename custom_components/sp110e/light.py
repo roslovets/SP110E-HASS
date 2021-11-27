@@ -205,7 +205,7 @@ class SP110EEntity(LightEntity):
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Instruct the light to turn off."""
         try:
-            await self._device.switch_off()
+            await self._device.switch_off(force=True)
             self._get_parameters()
         except Exception as exception:
             self._handle_exception(exception)
