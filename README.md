@@ -34,6 +34,13 @@ light:
     sequence: GRB # Color sequence (optional)
     pixels: 60 # Number of LED pixels (optional)
     strict: false # If true, you will get an error trying to operate with offline device (optional, default: false)
+    add_effects: # Custom effects in addition to built-in modes (optional)
+      - name: New Year # Custom name (required)
+        mode: 2 # (optional)
+        speed: 75 # (optional)
+      - name: Sunset
+-       color: [255, 64, 0]
+        brightness: 255
 ```
 
 ## FAQ

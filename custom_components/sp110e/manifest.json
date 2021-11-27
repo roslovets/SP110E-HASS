@@ -8,7 +8,7 @@
     "@roslovets"
   ],
   "requirements": [
-    "sp110e==1.0.0"
+    "sp110e==1.4.0"
   ],
   "iot_class": "local_polling",
   "version": "0.4.0"

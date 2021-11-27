@@ -1,6 +1,6 @@
 """Platform for light integration."""
 from __future__ import annotations
-from typing import Any
+from typing import Any, Union
 import logging
 from datetime import timedelta
 import voluptuous as vol
@@ -17,6 +17,17 @@ from sp110e.controller import Controller
 _LOGGER = logging.getLogger(__name__)
 
 # Validation of the user's configuration
+
+ADD_EFFECTS_SCHEMA = vol.Schema([{
+    vol.Required('name'): cv.string,
+    vol.Optional('state', default=True): bool,
+    vol.Optional('mode', default=None): vol.Any(cv.positive_int, None),
+    vol.Optional('speed', default=None): vol.Any(cv.positive_int, None),
+    vol.Optional('brightness', default=None): vol.Any(cv.positive_int, None),
+    vol.Optional('color', default=None): vol.Any(list, None),
+    vol.Optional('white', default=None): vol.Any(cv.positive_int, None)
+}])
+
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required('mac'): cv.string,
     vol.Optional('name', default='SP110E'): cv.string,
@@ -24,7 +35,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional('sequence', default=''): cv.string,
     vol.Optional('pixels', default=0): cv.positive_int,
     vol.Optional('speed', default=256): cv.positive_int,
-    vol.Optional('strict', default=False): cv.boolean
+    vol.Optional('strict', default=False): cv.boolean,
+    vol.Optional('add_effects', default=[]): ADD_EFFECTS_SCHEMA
 })
 SCAN_INTERVAL = timedelta(seconds=30)
 
@@ -44,6 +56,7 @@ async def async_setup_platform(
     pixels = config['pixels']
     speed = config['speed']
     strict = config['strict']
+    add_effects = config['add_effects']
     # Initialize device driver
     device = Controller(mac)
     # Add device
@@ -54,7 +67,8 @@ async def async_setup_platform(
         sequence=sequence,
         pixels=pixels,
         speed=speed,
-        strict=strict
+        strict=strict,
+        add_effects=add_effects
     )
     add_entities([sp110e_entity])
     try:
@@ -66,7 +80,17 @@ async def async_setup_platform(
 class SP110EEntity(LightEntity):
     """Representation of an SP110E device."""
 
-    def __init__(self, device, name: str, ic_model: str, sequence: str, pixels: int, speed: int, strict: bool) -> None:
+    def __init__(
+            self,
+            device: Controller,
+            name: str,
+            ic_model: str,
+            sequence: str,
+            pixels: int,
+            speed: int,
+            strict: bool,
+            add_effects: Union[list, None]
+    ) -> None:
         """Initialize object."""
         self._device = device
         self._name = name
@@ -79,6 +103,27 @@ class SP110EEntity(LightEntity):
         self._brightness = 0
         self._rgbw = (0, 0, 0, 0)
         self._configured = False
+        if add_effects:
+            effects = add_effects
+        else:
+            effects = []
+        modes: [int] = self._device.get_modes()
+        for mode in modes:
+            effects.append({'name': str(mode), 'mode': mode})
+        for effect in effects:
+            preset = {'name': effect.get('name'), 'state': bool(effect.get('state', True))}
+            mode = effect.get('mode', None)
+            preset['mode'] = int(mode) if mode is not None else None
+            speed = effect.get('speed', None)
+            preset['speed'] = int(speed) if speed is not None else None
+            brightness = effect.get('brightness', None)
+            preset['brightness'] = int(brightness) if brightness is not None else None
+            color = effect.get('color', None)
+            preset['color'] = list(color) if color is not None else None
+            white = effect.get('white', None)
+            preset['white'] = int(white) if white is not None else None
+            self._device.add_preset(preset)
+        self._effect = None
 
     @property
     def should_poll(self) -> bool:
@@ -89,22 +134,27 @@ class SP110EEntity(LightEntity):
         return format_mac(self._device.get_mac_address())
 
     @property
-    def supported_color_modes(self):
+    def supported_color_modes(self) -> list:
         return [COLOR_MODE_RGBW]
 
     @property
-    def supported_features(self):
+    def supported_features(self) -> str:
         return SUPPORT_EFFECT
 
     @property
-    def effect_list(self):
-        modes = self._device.get_modes()
-        return [str(mode) for mode in modes]
+    def effect_list(self) -> [str]:
+        presets = self._device.get_presets()
+        if presets:
+            effects = [preset['name'] for preset in presets]
+        else:
+            effects = []
+        return effects
 
     @property
-    def effect(self):
-        mode = self._device.get_mode()
-        return str(mode)
+    def effect(self) -> str:
+        if self._effect is None:
+            self._effect = str(self._device.get_mode())
+        return self._effect
 
     @property
     def color_mode(self):
@@ -116,12 +166,12 @@ class SP110EEntity(LightEntity):
         return self._name
 
     @property
-    def brightness(self):
+    def brightness(self) -> int:
         """Return the brightness of the light."""
         return self._brightness
 
     @property
-    def rgbw_color(self):
+    def rgbw_color(self) -> (int, int, int, int):
         return self._rgbw
 
     @property
@@ -146,7 +196,8 @@ class SP110EEntity(LightEntity):
                 await self._device.set_color(color)
                 await self._device.set_white(white)
             if effect is not None:
-                await self._device.set_mode(int(effect))
+                await self._device.set_preset(effect)
+                self._effect = effect
             self._get_parameters()
         except Exception as exception:
             self._handle_exception(exception)
@@ -163,7 +214,7 @@ class SP110EEntity(LightEntity):
     async def async_update(self) -> None:
         """Fetch new state data for this light."""
         try:
-            self._device.update()
+            await self._device.update()
             self._get_parameters()
         except Exception as exception:
             self._handle_exception(exception)
