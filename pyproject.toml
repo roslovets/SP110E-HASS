@@ -15,11 +15,11 @@ classifiers =[
     ]
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = ">=3.9,<4.0"
 
 [tool.poetry.dev-dependencies]
-homeassistant = "^2021.11.0"
-sp110e = "^1.4.0"
+homeassistant = ">=2021.11.0"
+sp110e = "^1.4.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
