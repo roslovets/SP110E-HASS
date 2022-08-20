@@ -1,6 +1,5 @@
 {
   "name": "SP110E RGB LED BLE Controller Integration",
-  "domains": ["light"],
   "homeassistant": "2021.11.0",
   "render_readme": true
 }
