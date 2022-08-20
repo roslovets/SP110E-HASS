@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.1 (2022-08-20)
+### Fix
+* **hacs:** Incorrect version ([`a33b7d6`](https://github.com/roslovets/SP110E-HASS/commit/a33b7d682b482a5e8167564ee7655dca7c34f3c2))
+* **hacs:** Meta and manifest ([`4e5363b`](https://github.com/roslovets/SP110E-HASS/commit/4e5363b719cc598f49bcd69346b4b200a8b49ad0))
+* Dependencies conflict ([`45e59b6`](https://github.com/roslovets/SP110E-HASS/commit/45e59b6bd52405e0a2ea7892973ec2a607c0ac75))
+
 ## v1.0.0 (2021-11-27)
 ### Feature
 * Force switch off ([`b47ce40`](https://github.com/roslovets/SP110E-HASS/commit/b47ce40bd6395bd769d7642f90eb06f526ddc8e8))
