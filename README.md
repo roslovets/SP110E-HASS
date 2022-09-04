@@ -39,7 +39,7 @@ light:
         mode: 2 # (optional)
         speed: 75 # (optional)
       - name: Sunset
--       color: [255, 64, 0]
+        color: [255, 64, 0]
         brightness: 255
 ```
 
@@ -53,8 +53,14 @@ A: Add this volume to your container: `/var/run/dbus/:/var/run/dbus/:z`
 
 ### Create new release
 
+⚠️ Do not forget to update `requirements` section in [manifest.json](custom_components/sp110e/manifest.json)
+
 Push changes to 'main' branch following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ## Useful links
 
 - [SP110E Python Library](https://github.com/roslovets/SP110E)
+
+## ⭐️ Show your support
+
+Give a star if this project helped you.
