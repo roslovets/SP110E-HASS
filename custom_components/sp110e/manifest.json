@@ -11,5 +11,5 @@
     "sp110e>=1.4.2"
   ],
   "iot_class": "local_polling",
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

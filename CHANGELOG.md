@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.2 (2022-09-04)
+### Fix
+* Bleak version conflicts ([`02df55e`](https://github.com/roslovets/SP110E-HASS/commit/02df55e493c979ee989e49723360b7a487ac96e9))
+
 ## v1.0.1 (2022-08-20)
 ### Fix
 * **hacs:** Incorrect version ([`a33b7d6`](https://github.com/roslovets/SP110E-HASS/commit/a33b7d682b482a5e8167564ee7655dca7c34f3c2))
